@@ -1,62 +1,43 @@
 package Services;
 
-import Entities.Customer;
 import Entities.Rental;
-import Entities.Trailer;
-
-import java.time.LocalDateTime;
+import org.springframework.web.bind.annotation.*;
 import java.util.HashMap;
 import java.util.Map;
 
+@RestController
+@RequestMapping("/rentals")
 public class RentalService {
     private Map<String, Rental> rentals = new HashMap<>();
-    private Map<String, Trailer> trailers = new HashMap<>();
 
-    public RentalService() {
-        // Initialize with some trailers
-        trailers.put("T1", new Trailer("T1", "LocA"));
-        trailers.put("T2", new Trailer("T2", "LocB"));
-    }
-
-    // Book a trailer
-    public String bookTrailer(String trailerId, Customer customer, LocalDateTime rentalStart, LocalDateTime rentalEnd) {
-        Trailer trailer = trailers.get(trailerId);
-        if (trailer == null || !trailer.isAvailable()) {
-            return "Trailer not available!";
+    @PostMapping("/create")
+    public String createRental(@RequestBody Rental rental) {
+        if (rentals.containsKey(rental.getRentalId())) {
+            return "Rental already exists!";
         }
 
-        trailer.setAvailable(false); // Mark as unavailable
-        String rentalId = "R" + (rentals.size() + 1);
-        Rental rental = new Rental(rentalId, trailer, customer, rentalStart, rentalEnd);
-        rentals.put(rentalId, rental);
+        // Assuming interaction with TrailerService to book a trailer
+        // REST call to Trailer Service to book trailer
+        // HttpResponse<String> response = Unirest.post("http://trailer-service/trailers/book/" + rental.getTrailerId()).asString();
 
-        return "Rental ID: " + rentalId + " created successfully.";
+        rentals.put(rental.getRentalId(), rental);
+        return "Rental created successfully.";
     }
 
-    // Return a trailer
-    public String returnTrailer(String rentalId) {
-        Rental rental = rentals.get(rentalId);
-        if (rental == null) {
+    @DeleteMapping("/cancel/{rentalId}")
+    public String cancelRental(@PathVariable String rentalId) {
+        if (!rentals.containsKey(rentalId)) {
             return "Rental not found!";
         }
 
-        Trailer trailer = rental.getTrailer();
-        trailer.setAvailable(true); // Mark as available
-
-        // Remove rental
+        // Interaction with TrailerService to mark the trailer as available
+        // REST call to Trailer Service to return trailer
         rentals.remove(rentalId);
-
-        return "Trailer returned successfully.";
+        return "Rental cancelled and trailer returned.";
     }
 
-    // Find available trailers
-    public Map<String, Trailer> findAvailableTrailers() {
-        Map<String, Trailer> availableTrailers = new HashMap<>();
-        for (Map.Entry<String, Trailer> entry : trailers.entrySet()) {
-            if (entry.getValue().isAvailable()) {
-                availableTrailers.put(entry.getKey(), entry.getValue());
-            }
-        }
-        return availableTrailers;
+    @GetMapping("/{rentalId}")
+    public Rental getRental(@PathVariable String rentalId) {
+        return rentals.get(rentalId);
     }
 }

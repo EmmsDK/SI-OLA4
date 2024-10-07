@@ -1,18 +1,16 @@
 package Entities;
 
-// Entities.Customer.java
 public class Customer {
     private String customerId;
     private String name;
-    private String contactDetails;
+    private String email;
 
-    public Customer(String customerId, String name, String contactDetails) {
+    public Customer(String customerId, String name, String email) {
         this.customerId = customerId;
         this.name = name;
-        this.contactDetails = contactDetails;
+        this.email = email;
     }
 
-    // Getters and Setters
     public String getCustomerId() { return customerId; }
     public String getName() { return name; }
 }

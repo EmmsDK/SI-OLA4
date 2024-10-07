@@ -11,11 +11,7 @@ public class Trailer {
         this.isAvailable = true;
     }
 
-    // Getters and Setters
     public String getTrailerId() { return trailerId; }
-    public String getLocationId() { return locationId; }
     public boolean isAvailable() { return isAvailable; }
     public void setAvailable(boolean available) { isAvailable = available; }
 }
-
-
