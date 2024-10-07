@@ -1,4 +1,4 @@
-package Entities;
+package com.MyTrailerApp.Entities;
 
 import java.time.LocalDateTime;
 

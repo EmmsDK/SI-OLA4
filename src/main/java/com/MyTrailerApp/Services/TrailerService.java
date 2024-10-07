@@ -1,23 +1,21 @@
-package Services;
+package com.MyTrailerApp.Services;
 
-import Entities.Trailer;
-import org.springframework.web.bind.annotation.*;
+import com.MyTrailerApp.Entities.Trailer;
+import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;
 
-@RestController
-@RequestMapping("/trailers")
+@Service
 public class TrailerService {
+
     private Map<String, Trailer> trailers = new HashMap<>();
 
     public TrailerService() {
-        // Sample trailers
         trailers.put("T1", new Trailer("T1", "LocA"));
         trailers.put("T2", new Trailer("T2", "LocB"));
     }
 
-    @GetMapping("/available")
     public Map<String, Trailer> getAvailableTrailers() {
         Map<String, Trailer> availableTrailers = new HashMap<>();
         for (Map.Entry<String, Trailer> entry : trailers.entrySet()) {
@@ -28,25 +26,21 @@ public class TrailerService {
         return availableTrailers;
     }
 
-    @PostMapping("/book/{trailerId}")
-    public String bookTrailer(@PathVariable String trailerId) {
+    public String bookTrailer(String trailerId) {
         Trailer trailer = trailers.get(trailerId);
         if (trailer == null || !trailer.isAvailable()) {
             return "Trailer not available!";
         }
-
-        trailer.setAvailable(false); // Mark trailer as booked
+        trailer.setAvailable(false);
         return "Trailer " + trailerId + " booked successfully.";
     }
 
-    @PostMapping("/return/{trailerId}")
-    public String returnTrailer(@PathVariable String trailerId) {
+    public String returnTrailer(String trailerId) {
         Trailer trailer = trailers.get(trailerId);
         if (trailer == null) {
             return "Trailer not found!";
         }
-
-        trailer.setAvailable(true); // Mark trailer as available
+        trailer.setAvailable(true);
         return "Trailer " + trailerId + " returned successfully.";
     }
 }
