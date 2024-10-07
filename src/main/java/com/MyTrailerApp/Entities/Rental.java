@@ -6,10 +6,10 @@ public class Rental {
     private String rentalId;
     private String trailerId;
     private String customerId;
-    private LocalDateTime rentalStart;
-    private LocalDateTime rentalEnd;
+    private String rentalStart;
+    private String rentalEnd;
 
-    public Rental(String rentalId, String trailerId, String customerId, LocalDateTime rentalStart, LocalDateTime rentalEnd) {
+    public Rental(String rentalId, String trailerId, String customerId, String rentalStart, String rentalEnd) {
         this.rentalId = rentalId;
         this.trailerId = trailerId;
         this.customerId = customerId;
