@@ -1,4 +1,4 @@
-package Entities;
+package com.MyTrailerApp.Entities;
 
 public class Trailer {
     private String trailerId;
