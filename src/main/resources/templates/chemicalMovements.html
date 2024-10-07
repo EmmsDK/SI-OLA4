@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Chemical Movements</title>
+  <script src="/js/app.js"></script> <!-- Link the JavaScript file -->
+</head>
+<body>
+<h1>Chemical Movements</h1>
+
+<form action="/movement/log" method="post">
+  <label for="chemical">Chemical Name:</label>
+  <input type="text" id="chemical" name="chemical_name" required><br><br>
+
+  <label for="origin">Origin:</label>
+  <input type="text" id="origin" name="origin" required><br><br>
+
+  <label for="destination">Destination:</label>
+  <input type="text" id="destination" name="destination" required><br><br>
+
+  <button type="submit">Log Movement</button>
+</form>
+
+<h2>Logged Movements</h2>
+<ul>
+  <li th:each="movement : ${movements}">
+    <span th:text="${movement.chemicalName}">Chemical</span> moved from
+    <span th:text="${movement.origin}">Origin</span> to
+    <span th:text="${movement.destination}">Destination</span> at
+    <span th:text="${movement.timestamp}">Timestamp</span>.
+  </li>
+</ul>
+</body>
+</html>
