@@ -1,11 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Home Page</title>
+    <title>MyTrailer Rental Service - Endpoint Tester</title>
+    <script defer src="/js/app.js"></script>
 </head>
 <body>
-<h1>Welcome to the MyTrailer Rental Service</h1>
+<h1>MyTrailer Rental Service - Endpoint Tester</h1>
 
-<script src="../static/js/app.js"></script>
+<h2>Customer Endpoints</h2>
+<form id="create-customer-form">
+    <h3>Create a Customer</h3>
+    <label for="customerId">Customer ID:</label>
+    <input type="text" id="customerId" name="customerId" required><br>
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" required><br>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required><br>
+    <button type="button" id="create-customer-btn">Create Customer</button>
+</form>
+
+<form id="get-customer-form">
+    <h3>Get a Customer by ID</h3>
+    <label for="getCustomerId">Customer ID:</label>
+    <input type="text" id="getCustomerId" name="getCustomerId" required><br>
+    <button type="button" id="get-customer-btn">Get Customer</button>
+</form>
+
+<h3>Get All Customers</h3>
+<button id="get-customers-btn">Get All Customers</button>
+<div id="customers-list"></div>
+
+<h2>Rental Endpoints</h2>
+<form id="create-rental-form">
+    <h3>Create a Rental</h3>
+    <label for="rentalId">Rental ID:</label>
+    <input type="text" id="rentalId" name="rentalId" required><br>
+    <label for="trailerId">Trailer ID:</label>
+    <input type="text" id="trailerId" name="trailerId" required><br>
+    <label for="customerIdRental">Customer ID:</label>
+    <input type="text" id="customerIdRental" name="customerIdRental" required><br>
+    <label for="rentalStart">Rental Start (YYYY-MM-DDTHH:mm:ss):</label>
+    <input type="text" id="rentalStart" name="rentalStart" required><br>
+    <label for="rentalEnd">Rental End (YYYY-MM-DDTHH:mm:ss):</label>
+    <input type="text" id="rentalEnd" name="rentalEnd" required><br>
+    <button type="button" id="create-rental-btn">Create Rental</button>
+</form>
+
+<form id="get-rental-form">
+    <h3>Get a Rental by ID</h3>
+    <label for="getRentalId">Rental ID:</label>
+    <input type="text" id="getRentalId" name="getRentalId" required><br>
+    <button type="button" id="get-rental-btn">Get Rental</button>
+</form>
+
+<h3>Get All Rentals</h3>
+<button id="get-rentals-btn">Get All Rentals</button>
+<div id="rentals-list"></div>
+
+<form id="cancel-rental-form">
+    <h3>Cancel a Rental by ID</h3>
+    <label for="cancelRentalId">Rental ID:</label>
+    <input type="text" id="cancelRentalId" name="cancelRentalId" required><br>
+    <button type="button" id="cancel-rental-btn">Cancel Rental</button>
+</form>
+
+<h2>Trailer Endpoints</h2>
+<h3>Get All Available Trailers</h3>
+<button id="get-available-trailers-btn">Get Available Trailers</button>
+<div id="available-trailers-list"></div>
+
+<form id="book-trailer-form">
+    <h3>Book a Trailer by ID</h3>
+    <label for="bookTrailerId">Trailer ID:</label>
+    <input type="text" id="bookTrailerId" name="bookTrailerId" required><br>
+    <button type="button" id="book-trailer-btn">Book Trailer</button>
+</form>
+
+<form id="return-trailer-form">
+    <h3>Return a Trailer by ID</h3>
+    <label for="returnTrailerId">Trailer ID:</label>
+    <input type="text" id="returnTrailerId" name="returnTrailerId" required><br>
+    <button type="button" id="return-trailer-btn">Return Trailer</button>
+</form>
+
 </body>
 </html>
