@@ -4,6 +4,8 @@ import com.MyTrailerApp.Entities.Customer;
 import com.MyTrailerApp.Services.CustomerService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping("/customers")
 public class CustomerController {
@@ -22,5 +24,11 @@ public class CustomerController {
     @GetMapping("/{customerId}")
     public Customer getCustomer(@PathVariable String customerId) {
         return customerService.getCustomer(customerId);
+    }
+
+    // New endpoint to get all customers
+    @GetMapping
+    public Collection<Customer> getAllCustomers() {
+        return customerService.getAllCustomers();
     }
 }
