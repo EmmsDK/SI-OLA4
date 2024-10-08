@@ -3,6 +3,7 @@ package com.MyTrailerApp.Services;
 import com.MyTrailerApp.Entities.Rental;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -16,13 +17,6 @@ public class RentalService {
         rentals.put("R2", new Rental("R2", "T2", "C2", "2021-01-01", "2021-01-02"));
     }
 
-    /*
-        this.rentalId = rentalId;
-        this.trailerId = trailerId;
-        this.customerId = customerId;
-        this.rentalStart = rentalStart;
-        this.rentalEnd = rentalEnd;
-     */
     public String createRental(Rental rental) {
         rentals.put(rental.getRentalId(), rental);
         return "Rental created successfully.";
@@ -35,5 +29,10 @@ public class RentalService {
 
     public Rental getRental(String rentalId) {
         return rentals.get(rentalId);
+    }
+
+    // New method to return all rentals
+    public Collection<Rental> getAllRentals() {
+        return rentals.values();
     }
 }

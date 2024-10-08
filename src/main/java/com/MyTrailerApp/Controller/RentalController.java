@@ -4,6 +4,8 @@ import com.MyTrailerApp.Entities.Rental;
 import com.MyTrailerApp.Services.RentalService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+
 @RestController
 @RequestMapping("/rentals")
 public class RentalController {
@@ -27,5 +29,11 @@ public class RentalController {
     @GetMapping("/{rentalId}")
     public Rental getRental(@PathVariable String rentalId) {
         return rentalService.getRental(rentalId);
+    }
+
+    // New endpoint to get all rentals
+    @GetMapping
+    public Collection<Rental> getAllRentals() {
+        return rentalService.getAllRentals();
     }
 }
