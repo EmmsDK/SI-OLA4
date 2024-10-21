@@ -34,4 +34,5 @@ To refactor the application into microservices, each bounded context (e.g., Trai
 - **Trailer Service**: Manages all operations related to trailers.
 - **Customer Service**: Manages all operations related to customers.
 - **Rental Service**: Manages all operations related to rentals.
+
 To lay the foundation for refactoring the application into microservices, we've implemented a Eureka Server for service discovery. This allows each microservice, such as the Trailer Service, Customer Service, and Rental Service, to register itself with the Eureka Server, enabling dynamic discovery and communication between services without hard-coded endpoints. With this setup, services can locate and interact with each other efficiently, promoting flexibility in scaling and deployment as the system grows.
